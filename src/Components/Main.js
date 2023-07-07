@@ -133,7 +133,7 @@ const Main = () => {
   const [bestItem, setBesteItem] = useState([]);
   const getBestItem = async () => {
     // let url = `http://localhost:3005/products/`;
-    let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt`;
+    let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products`;
     let response = await fetch(url);
     let data = await response.json();
     setBesteItem(data);

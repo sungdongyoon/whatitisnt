@@ -94,11 +94,12 @@ const MoreProduct = styled.div`
   border: 1px solid #ccc;
   width: 100%;
   height: 100px;
+  margin-top: 50px;
 `;
 
 const ProductDetail = () => {
   let {id} = useParams();
-  const [product, setProduct] = useState("");
+  const [product, setProduct] = useState([]);
   const getProduct = async () => {
     // let url = `http://localhost:3005/products/${id}`;
     let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products/${id}`;
@@ -109,6 +110,7 @@ const ProductDetail = () => {
   useEffect(() => {
     getProduct();
   }, [])
+  console.log("상품", product.id);
   return (
     <Body>
       <Container>
@@ -131,12 +133,10 @@ const ProductDetail = () => {
             <img src={product.img}/>
           </ImgContainer>
           <Size>
-            <span>230</span>
-            <span>240</span>
-            <span>250</span>
-            <span>260</span>
-            <span>270</span>
-            <span>280</span>
+            {/* <span>{product.size}</span> */}
+            {product.size.map((it) => (
+              <span>{it}</span>
+            ))}
           </Size>
           <MoreProduct>
             <div></div>

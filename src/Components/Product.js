@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Container = styled.div`
   margin: 40px 50px;
   width: 320px;
+  cursor: pointer;
 `;
 
 const Img = styled.img `

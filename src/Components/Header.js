@@ -36,6 +36,9 @@ const Content = styled.div`
 `;
 
 const ImgWrap = styled.div`
+  img {
+    cursor: pointer;
+  }
 `;
 
 const Ul = styled.ul`

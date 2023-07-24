@@ -71,6 +71,7 @@ const Ul = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     margin: 0 80px;
     img {
       width: 70px;
@@ -153,23 +154,23 @@ const Main = () => {
             <img src='https://wiisnt.co.kr/web/product/extra/small/20230508/e6e0179496561247b40520060be53070.jpg'/>
             <span>BEST</span>
           </li>
-          <li>
+          <li onClick={() => navigate('/productAll')}>
             <img src='https://wiisnt.co.kr/web/product/extra/big/20230406/a0eb7b0745802a0cd254c22cb5ba50e9.jpg'/>
             <span>NEW</span>
           </li>
-          <li>
+          <li onClick={() => navigate('/productAll')}>
             <img src='https://wiisnt.co.kr/web/product/extra/big/20230609/f8a10f9e599f9212af11a1df3828d442.jpg'/>
             <span>TOP</span>
           </li>
-          <li>
+          <li onClick={() => navigate('/productAll')}>
             <img src='https://wiisnt.co.kr/web/product/extra/small/20230414/d9d2ef133ddcd45cb0737f0e293b5242.jpg'/>
             <span>BOTTOM</span>
           </li>
-          <li>
+          <li onClick={() => navigate('/productAll')}>
             <img src='https://wiisnt.co.kr/web/product/small/202306/c0d8375a496365c83c6517fbae8036b2.jpg'/>
             <span>WOMAN</span>
           </li>
-          <li>
+          <li onClick={() => navigate('/productAll')}>
             <img src='https://wiisnt.co.kr/web/product/extra/small/20230413/3b97f3250ef4ec7f2a436a4c7095cb7f.jpg'/>
             <span>아울렛</span>
           </li>

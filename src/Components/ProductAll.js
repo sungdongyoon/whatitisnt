@@ -79,20 +79,20 @@ const ProductAll = () => {
   const search = (event) => {
     if(event.key === "Enter") {
       let keyword = event.target.value;
-      console.log(keyword);
-      // navigate(`/?q=${keyword}`);
-      navigate('/products/0')
+      console.log("키워드", keyword);
+      navigate(`/?q=${keyword}`);
+      // navigate('/products/0')
     }
   }
   const getProduct = async () => {
     let searchQuery = query.get('q') || '';
     // let url = `http://localhost:3005/products/`;
-    let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products`;
+    let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products/${searchQuery}`;
     let response = await fetch(url);
     let data = await response.json();
-    console.log(data);
+    console.log("데이터", data);
     setProductList(data);
-    console.log(productList)
+    console.log("리스트", productList)
   };
   useEffect(() => {
     getProduct();

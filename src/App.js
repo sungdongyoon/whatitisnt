@@ -3,6 +3,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Header from './Components/Header';
 import Main from './Components/Main';
 import ProductAll from './Components/ProductAll';

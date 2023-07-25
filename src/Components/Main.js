@@ -129,6 +129,33 @@ const Item = styled.div`
   }
 `;
 
+const News = styled.div`
+  width: 1200px;
+  border-bottom: 2px solid #000;
+  margin: 200px 0;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Influencer = styled.div`
+  width: 1200px;
+  border-bottom: 2px solid #000;
+  margin: 200px 0;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const LookBook = styled.div`
+  width: 1200px;
+  border-bottom: 2px solid #000;
+  margin: 200px 0;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+`;
+
 const Main = () => {
   const navigate = useNavigate();
   const [bestItem, setBesteItem] = useState([]);
@@ -240,6 +267,32 @@ const Main = () => {
           </Item> */}
         </Items>
       </BestItem>
+      <News>
+        <h1>WHAT'S NEWS</h1>
+        <div className='news'>
+          <div className='news1'>
+            <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/097b738af3dad89e6e9032d9e2749430.jpg'/>
+            <h4>EVERYDAY Graphic T-shirt!</h4>
+            <span>그래픽티 에디토리얼</span>
+          </div>
+          <div className='news2'>
+            <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/a3134b6b57e74be38f023cd7e683f529.jpg'/>
+            <h4>EVERYDAY Graphic T-shirt!</h4>
+            <span>그래픽티 에디토리얼</span>
+          </div>
+          <div className='news3'>
+            <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/29e153fdf828d624b726726db58e3a5e.jpg'/>
+            <h4>EVERYDAY Graphic T-shirt!</h4>
+            <span>그래픽티 에디토리얼</span>
+          </div>
+        </div>
+      </News>
+      <Influencer>
+        <h1>인플루언서'S PICK</h1>
+      </Influencer>
+      <LookBook>
+        <h1>LOOKBOOK</h1>
+      </LookBook>
     </Container>
   )
 }

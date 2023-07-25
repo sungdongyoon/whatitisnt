@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Container = styled.div`
   margin-top: 100px;
@@ -87,73 +87,150 @@ const Ul = styled.div`
 const BestItem = styled.div`
   width: 1200px;
   border-bottom: 2px solid #000;
-  margin: 200px 0;
+  margin: 100px 0;
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
-`;
-
-const Items = styled.div`
-  display: flex;
-`;
-
-const Item = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  img {
+  overflow: hidden;
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .bestitem {
     width: 100%;
-    height: 100%;
-  }
-  .title {
-    font-weight: bold;
-    font-size: 17px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .discount {
-    color: red;
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  .price {
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  .originPrice {
-    font-size: 14px;
-    color: #999;
-    text-decoration: line-through;
+    display: flex;
+    .bestitem_item {
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+      border: 1px solid red;
+      img {
+        width: 200px;
+        height: 250px;
+      }
+      .bestitem_title {
+        font-weight: bold;
+        font-size: 17px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .bestitem_discount {
+        color: red;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      .bestitem_price {
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      .bestitem_originPrice {
+        font-size: 14px;
+        color: #999;
+        text-decoration: line-through;
+      }
+    }
   }
 `;
 
 const News = styled.div`
   width: 1200px;
-  border-bottom: 2px solid #000;
-  margin: 200px 0;
+  margin: 100px 0;
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .news {
+    display: flex;
+    justify-content: space-between;
+    .news_item {
+      width: 30%;
+      h4 {
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+      }
+      span {
+        display: block;
+        font-size: 12px;
+        text-align: center;
+      }
+      img {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+    }
+  }
 `;
 
 const Influencer = styled.div`
   width: 1200px;
-  border-bottom: 2px solid #000;
-  margin: 200px 0;
+  margin: 100px 0;
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .influencer {
+    display: flex;
+    justify-content: space-between;
+    .influencer_item {
+      width: 18%;
+      img {
+        width: 100%;
+      }
+    }
+  }
 `;
 
 const LookBook = styled.div`
   width: 1200px;
-  border-bottom: 2px solid #000;
-  margin: 200px 0;
+  margin: 100px 0;
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .lookbook {
+    display: flex;
+    justify-content: space-between;
+    .lookbook_item {
+      width: 30%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 100%;
+      }
+      .lookbook_item_title {
+        background-color: #fff;
+        width: 80%;
+        position: absolute;
+        bottom: -30px;
+        padding: 10px;
+        h4 {
+          font-size: 16px;
+          font-weight: bold;
+          text-align: center;
+        }
+        span {
+          display: block;
+          text-align: center;
+          color: #999;
+          font-size: 14px;
+        }
+      }
+    }
+  }
 `;
 
 const Main = () => {
@@ -219,7 +296,18 @@ const Main = () => {
       </Phamplat>
       <BestItem>
         <h1>BEST ITEM</h1>
-        <Items>
+        <div className='bestitem'>
+          {bestItem.map((it) => (
+            <div className='bestitem_item'>
+              <img src={it.img}/>
+              <div>
+                <span className='bestitem_title'>{it.title}</span>
+                <span className='bestitem_discount'>{it.discount}</span>
+                <span className='bestitem_price'>{it.price - ((it.price) * (it.discount)/100)}원</span>
+                <span className='bestitem_originPrice'>{it.price}</span>
+              </div>
+            </div>
+          ))}
           {/* <Item>
             <img src={bestItem[0].img}/>
             <div>
@@ -265,33 +353,79 @@ const Main = () => {
               <span className='originPrice'>{bestItem[9].price}원</span>
             </div>
           </Item> */}
-        </Items>
+        </div>
       </BestItem>
       <News>
         <h1>WHAT'S NEWS</h1>
         <div className='news'>
-          <div className='news1'>
-            <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/097b738af3dad89e6e9032d9e2749430.jpg'/>
+          <div className='news_item'>
+            <Link to='/productAll'>
+              <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/097b738af3dad89e6e9032d9e2749430.jpg'/>
+            </Link>
             <h4>EVERYDAY Graphic T-shirt!</h4>
             <span>그래픽티 에디토리얼</span>
           </div>
-          <div className='news2'>
-            <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/a3134b6b57e74be38f023cd7e683f529.jpg'/>
-            <h4>EVERYDAY Graphic T-shirt!</h4>
-            <span>그래픽티 에디토리얼</span>
+          <div className='news_item'>
+            <Link to='/productAll'>
+              <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/a3134b6b57e74be38f023cd7e683f529.jpg'/>
+            </Link>
+            <h4>Dreamy Summer Day</h4>
+            <span>와릿이즌 X 코랄리크 컬렉션</span>
           </div>
-          <div className='news3'>
-            <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/29e153fdf828d624b726726db58e3a5e.jpg'/>
-            <h4>EVERYDAY Graphic T-shirt!</h4>
-            <span>그래픽티 에디토리얼</span>
+          <div className='news_item'>
+            <Link to='/productAll'>
+              <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/29e153fdf828d624b726726db58e3a5e.jpg'/>
+            </Link>
+            <h4>SUMMER BREEZE</h4>
+            <span>와릿이즌 스트라이프 컬렉션</span>
           </div>
         </div>
       </News>
       <Influencer>
         <h1>인플루언서'S PICK</h1>
+        <div className='influencer'>
+          <div className='influencer_item'>
+            <img src='https://wiisnt.co.kr/web/product/tiny/202307/1c8bf0bca604ce038e08533cfe4f7b69.jpg'/>
+          </div>
+          <div className='influencer_item'>
+            <img src='https://wiisnt.co.kr/web/product/tiny/202307/daaf799587a57e946bca014018003fdc.jpg'/>
+          </div>
+          <div className='influencer_item'>
+            <img src='https://wiisnt.co.kr/web/product/tiny/202307/6007742a7ded5a31e5cb94335c901c3d.jpg'/>
+          </div>
+          <div className='influencer_item'>
+            <img src='https://wiisnt.co.kr/web/product/tiny/202307/640e600c1fe5cd1ff9ae73dafe3ee84e.jpg'/>
+          </div>
+          <div className='influencer_item'>
+            <img src='https://wiisnt.co.kr/web/product/tiny/202307/49785137df9defa30b38c57bb7e6cfc6.jpg'/>
+          </div>
+        </div>
       </Influencer>
       <LookBook>
         <h1>LOOKBOOK</h1>
+        <div className='lookbook'>
+          <div className='lookbook_item'>
+            <img src='https://wiisnt.co.kr/images/MOBILE/main_447x566.jpg'/>
+            <div className='lookbook_item_title'>
+              <h4>EVERYDAY Graphic T-shirt!</h4>
+              <span>그래픽티 컬렉션</span>
+            </div>
+          </div>
+          <div className='lookbook_item'>
+            <img src='https://wiisnt.co.kr/images/MOBILE/230623_main_.jpg'/>
+            <div className='lookbook_item_title'>
+              <h4>Dreamy Summer Day</h4>
+              <span>와릿이즌 X 코랄리크 컬렉션</span>
+            </div>
+          </div>
+          <div className='lookbook_item'>
+            <img src='https://wiisnt.co.kr/images/MOBILE/230609_main_.jpg'/>
+            <div className='lookbook_item_title'>
+              <h4>SUMMER BREEZE</h4>
+              <span>와릿이즌 스트라이프 컬렉션</span>
+            </div>
+          </div>
+        </div>
       </LookBook>
     </Container>
   )

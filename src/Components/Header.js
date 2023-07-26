@@ -12,6 +12,7 @@ const Container = styled.div`
   left: 0;
   right: 0;
   background-color: #fff;
+  z-index: 10;
 `;
 
 const Banner = styled.div`
@@ -47,7 +48,7 @@ const Ul = styled.ul`
   align-items: center;
   list-style: none;
   padding: 0;
-  margin: 0 300px;
+  // margin: 0 300px;
   flex: 1;
 `;
 
@@ -58,7 +59,6 @@ const Atag = styled.a`
   font-size: 13px;
   padding: 10px 20px;
   cursor: pointer;
-  flex: 1;
   .new {
     color: #068FFF;
   }

@@ -3,9 +3,9 @@ import { styled } from 'styled-components';
 
 const Button = styled.div`
   position: fixed;
-  bottom: 100px;
-  right: 200px;
-  width: 140px;
+  bottom: 50px;
+  right: 100px;
+  width: 150px;
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -13,6 +13,10 @@ const Button = styled.div`
   span {
     font-size: 12px;
     font-weight: bold;
+    background-color: #fff;
+    padding: 10px 20px;
+    padding-right: 50px;
+    border-radius: 30px;
   }
   img {
     width: 60px;
@@ -20,6 +24,8 @@ const Button = styled.div`
     border: 1px solid #000;
     border-radius: 50%;
     background-color: #FFF000;
+    position: absolute;
+    right: 0;
   }
 `;
 

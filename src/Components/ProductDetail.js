@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { ClipLoader } from 'react-spinners';
 
 const Body = styled.body`
   width: 100%;
@@ -200,6 +201,7 @@ const ProductDetailInfo = styled.div`
 
 const ProductDetail = () => {
   let {id} = useParams();
+  const [loading, setLoading] = useState(false);
   const [detailTrueFalse, setDetailTrueFalse] = useState(false);
   const [product, setProduct] = useState([]);
   const [itemCounter, setItemCounter] = useState(1);
@@ -212,7 +214,14 @@ const ProductDetail = () => {
   };
   useEffect(() => {
     getProduct();
-  }, [])
+  }, []);
+  if(loading) {
+    return (
+      <div className='loader'>
+        <ClipLoader color="#f00" loading={loading} size={300}/>
+      </div>
+    )
+  }
   const discountPrice = product.price - ((product.price) * ((product.discount)/100));
   return (
     <Body>
@@ -239,9 +248,9 @@ const ProductDetail = () => {
             <span>{product.size}</span>
             <span>{product.size}</span>
             <span>{product.size}</span>
-            {/* {product.size.map((it) => (
+            {product.size.map((it) => (
               <span>{it}</span>
-            ))} */}
+            ))}
           </Size>
           <SelectItem>
             <div className='select_size'>

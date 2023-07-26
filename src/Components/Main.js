@@ -91,26 +91,46 @@ const BestItem = styled.div`
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  position: relative;
+  .slide_left {
+    position: absolute;
+    left: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  .slide_right {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    color: #ccc;
+    cursor: pointer;
+  }
   h1 {
     font-size: 26px;
     font-weight: bold;
   }
   .bestitem {
-    width: 100%;
+    width: 1200px;
     display: flex;
+    overflow: hidden;
     .bestitem_item {
       display: flex;
       flex-direction: column;
-      width: 20%;
-      border: 1px solid red;
+      width: 240px;
+      transition: 0.5s;
       img {
-        width: 200px;
-        height: 250px;
+        width: 240px;
+        height: 100%;
       }
       .bestitem_title {
+        display: block;
         font-weight: bold;
-        font-size: 17px;
+        font-size: 12px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -236,8 +256,9 @@ const LookBook = styled.div`
 const Main = () => {
   const navigate = useNavigate();
   const [bestItem, setBesteItem] = useState([]);
+  const [slidePx, setSlidePx] = useState(0);
   const getBestItem = async () => {
-    // let url = `http://localhost:3005/products/`;
+    // let url = `http://localhost:3000/products/`;
     let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products`;
     let response = await fetch(url);
     let data = await response.json();
@@ -246,6 +267,12 @@ const Main = () => {
   useEffect(() => {
     getBestItem();
   }, [])
+  const toPrev = () => {
+    slidePx < 0 && setSlidePx(slidePx + 240);
+  }
+  const toNext = () => {
+    slidePx > -2160 && setSlidePx(slidePx - 240);
+  }
   return (
     <Container>
       <Banner>
@@ -295,65 +322,22 @@ const Main = () => {
         </div>
       </Phamplat>
       <BestItem>
+        <div className='slide_left' onClick={toPrev}>{"<"}</div>
+        <div className='slide_right' onClick={toNext}>{">"}</div>
         <h1>BEST ITEM</h1>
-        <div className='bestitem'>
-          {bestItem.map((it) => (
-            <div className='bestitem_item'>
-              <img src={it.img}/>
-              <div>
-                <span className='bestitem_title'>{it.title}</span>
-                <span className='bestitem_discount'>{it.discount}</span>
-                <span className='bestitem_price'>{it.price - ((it.price) * (it.discount)/100)}원</span>
-                <span className='bestitem_originPrice'>{it.price}</span>
+          <div className='bestitem'>
+            {bestItem.map((it) => (
+              <div className='bestitem_item' style={{transform: `translateX(${slidePx}px)`}}>
+                <img src={it.img}/>
+                <div>
+                  <span className='bestitem_title'>{it.title}</span>
+                  <span className='bestitem_discount'>{it.discount}%</span>
+                  <span className='bestitem_price'>{it.price - ((it.price) * (it.discount)/100)}원</span>
+                  <span className='bestitem_originPrice'>{it.price}원</span>
+                </div>
               </div>
-            </div>
-          ))}
-          {/* <Item>
-            <img src={bestItem[0].img}/>
-            <div>
-              <span className='title'>{bestItem[0].title}</span>
-              <span className='discount'>{bestItem[0].discount}%</span>
-              <span className='price'>{bestItem[0].price - ((bestItem[0].price) * ((bestItem[0].discount)/100))}원</span>
-              <span className='originPrice'>{bestItem[0].price}원</span>
-            </div>
-          </Item>
-          <Item>
-            <img src={bestItem[3].img}/>
-            <div>
-              <span className='title'>{bestItem[3].title}</span>
-              <span className='discount'>{bestItem[3].discount}%</span>
-              <span className='price'>{bestItem[3].price - ((bestItem[3].price) * ((bestItem[3].discount)/100))}원</span>
-              <span className='originPrice'>{bestItem[3].price}원</span>
-            </div>
-          </Item>
-          <Item>
-            <img src={bestItem[5].img}/>
-            <div>
-              <span className='title'>{bestItem[5].title}</span>
-              <span className='discount'>{bestItem[5].discount}%</span>
-              <span className='price'>{bestItem[5].price - ((bestItem[5].price) * ((bestItem[5].discount)/100))}원</span>
-              <span className='originPrice'>{bestItem[5].price}원</span>
-            </div>
-          </Item>
-          <Item>
-            <img src={bestItem[7].img}/>
-            <div>
-              <span className='title'>{bestItem[7].title}</span>
-              <span className='discount'>{bestItem[7].discount}%</span>
-              <span className='price'>{bestItem[7].price - ((bestItem[7].price) * ((bestItem[7].discount)/100))}원</span>
-              <span className='originPrice'>{bestItem[7].price}원</span>
-            </div>
-          </Item>
-          <Item>
-            <img src={bestItem[9].img}/>
-            <div>
-              <span className='title'>{bestItem[9].title}</span>
-              <span className='discount'>{bestItem[9].discount}%</span>
-              <span className='price'>{bestItem[9].price - ((bestItem[9].price) * ((bestItem[9].discount)/100))}원</span>
-              <span className='originPrice'>{bestItem[9].price}원</span>
-            </div>
-          </Item> */}
-        </div>
+            ))}
+          </div>
       </BestItem>
       <News>
         <h1>WHAT'S NEWS</h1>
@@ -397,7 +381,7 @@ const Main = () => {
             <img src='https://wiisnt.co.kr/web/product/tiny/202307/640e600c1fe5cd1ff9ae73dafe3ee84e.jpg'/>
           </div>
           <div className='influencer_item'>
-            <img src='https://wiisnt.co.kr/web/product/tiny/202307/49785137df9defa30b38c57bb7e6cfc6.jpg'/>
+            <img src='https://mblogthumb-phinf.pstatic.net/MjAyMzA1MzFfMTM4/MDAxNjg1NTA2MDk4NjM3.KkRN9hKhqcFEDLcd2UBtuzs9PlIr8PrFDlGlLkcJ2nEg.YoWgfKALB2bV5A522Tlm_E7HOkFNJvG6CCWi1EXky_Eg.PNG.wlwlqo8282/image.png?type=w800'/>
           </div>
         </div>
       </Influencer>
@@ -405,7 +389,7 @@ const Main = () => {
         <h1>LOOKBOOK</h1>
         <div className='lookbook'>
           <div className='lookbook_item'>
-            <img src='https://wiisnt.co.kr/images/MOBILE/main_447x566.jpg'/>
+            <img src='https://mblogthumb-phinf.pstatic.net/MjAyMzA1MzFfMjY1/MDAxNjg1NTA2MDc4Nzkw.xP69bSQejeKgKIM7xJIumjs5bOGJ0BvxYizXamy2l5Yg.nuwhKwnRLo-EgovmiowKM7eXTDdFlF_ce5IVO7wKKN4g.PNG.wlwlqo8282/image.png?type=w800'/>
             <div className='lookbook_item_title'>
               <h4>EVERYDAY Graphic T-shirt!</h4>
               <span>그래픽티 컬렉션</span>

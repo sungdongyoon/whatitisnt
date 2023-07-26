@@ -86,7 +86,7 @@ const ProductAll = () => {
   }
   const getProduct = async () => {
     let searchQuery = query.get('q') || '';
-    // let url = `http://localhost:3005/products/`;
+    // let url = `http://localhost:3000/products/`;
     let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products/${searchQuery}`;
     let response = await fetch(url);
     let data = await response.json();

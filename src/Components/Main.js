@@ -85,7 +85,7 @@ const Ul = styled.div`
 `;
 
 const BestItem = styled.div`
-  width: 1200px;
+  width: 1400px;
   border-bottom: 2px solid #000;
   margin: 100px 0;
   padding-bottom: 30px;
@@ -115,22 +115,21 @@ const BestItem = styled.div`
     font-weight: bold;
   }
   .bestitem {
-    width: 1200px;
+    width: 1400px;
     display: flex;
     overflow: hidden;
     .bestitem_item {
       display: flex;
       flex-direction: column;
-      width: 240px;
+      width: 280px;
       transition: 0.5s;
       img {
-        width: 240px;
+        width: 280px;
         height: 100%;
       }
       .bestitem_title {
         display: block;
-        font-weight: bold;
-        font-size: 12px;
+        font-size: 16px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -155,7 +154,7 @@ const BestItem = styled.div`
 `;
 
 const News = styled.div`
-  width: 1200px;
+  width: 1400px;
   margin: 100px 0;
   padding-bottom: 30px;
   display: flex;
@@ -169,26 +168,58 @@ const News = styled.div`
     justify-content: space-between;
     .news_item {
       width: 30%;
-      h4 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .news_title {
         font-weight: bold;
         font-size: 16px;
         text-align: center;
       }
-      span {
+      .news_subTitle {
         display: block;
         font-size: 12px;
-        text-align: center;
+        font-weight: bold;
+        margin-bottom: 30px;
       }
-      img {
+      .news_img {
         width: 100%;
         margin-bottom: 30px;
+      }
+      .news_item_section {
+        width: 80%;
+        .news_item_info {
+          display: flex;
+          align-items: center;
+          .news_item_img {
+            width: 70px;
+            margin-right: 10px;
+          }
+          .news_item_detail {
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            .news_item_title {
+              font-size: 14px;
+            }
+            .news_item_origin_price {
+              color: #999;
+              text-decoration: line-through;
+            }
+            .news_item_price {
+              b {
+                color: red;
+              }
+            }
+          }
+        }
       }
     }
   }
 `;
 
 const Influencer = styled.div`
-  width: 1200px;
+  width: 1400px;
   margin: 100px 0;
   padding-bottom: 30px;
   display: flex;
@@ -204,13 +235,39 @@ const Influencer = styled.div`
       width: 18%;
       img {
         width: 100%;
+        margin-bottom: 10px;
+      }
+      .influencer_item_img {
+        width: 70px;
+      }
+      .influencer_item_info {
+        display: flex;
+        .influencer_item_detail {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-left: 10px;
+          width: 100%;
+          font-size: 12px;
+          .influencer_item_title {
+          }
+          .influencer_item_origin_price {
+            color: #999;
+            text-decoration: line-through;
+          }
+          .influencer_item_price {
+            b {
+              color: red;
+            }
+          }
+        }
       }
     }
   }
 `;
 
 const LookBook = styled.div`
-  width: 1200px;
+  width: 1400px;
   margin: 100px 0;
   padding-bottom: 30px;
   display: flex;
@@ -268,10 +325,10 @@ const Main = () => {
     getBestItem();
   }, [])
   const toPrev = () => {
-    slidePx < 0 && setSlidePx(slidePx + 240);
+    slidePx < 0 && setSlidePx(slidePx + 280);
   }
   const toNext = () => {
-    slidePx > -2160 && setSlidePx(slidePx - 240);
+    slidePx > -2160 && setSlidePx(slidePx - 280);
   }
   return (
     <Container>
@@ -344,46 +401,79 @@ const Main = () => {
         <div className='news'>
           <div className='news_item'>
             <Link to='/productAll'>
-              <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/097b738af3dad89e6e9032d9e2749430.jpg'/>
+              <img className='news_img' src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/097b738af3dad89e6e9032d9e2749430.jpg'/>
             </Link>
-            <h4>EVERYDAY Graphic T-shirt!</h4>
-            <span>그래픽티 에디토리얼</span>
-            <span>{bestItem[0]?.title}</span>
+            <h4 className='news_title'>EVERYDAY Graphic T-shirt!</h4>
+            <span className='news_subTitle'>그래픽티 에디토리얼</span>
+            {bestItem.filter((it) => it.id <= 2).map((it) => (
+            <div className='news_item_section'>
+              <div className='news_item_info'>
+                <img src={it.img} className='news_item_img'/>
+                <div className='news_item_detail'>
+                  <span className='news_item_title'>{it.title}</span>
+                  <span className='news_item_origin_price'>{it.price}원</span>
+                  <span className='news_item_price'>{it.price - ((it.price) * (it.discount)/100)}원 <b>{it.discount}%</b></span>
+                </div>
+              </div>
+            </div>
+            ))}
           </div>
           <div className='news_item'>
             <Link to='/productAll'>
-              <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/a3134b6b57e74be38f023cd7e683f529.jpg'/>
+              <img className='news_img' src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/a3134b6b57e74be38f023cd7e683f529.jpg'/>
             </Link>
-            <h4>Dreamy Summer Day</h4>
-            <span>와릿이즌 X 코랄리크 컬렉션</span>
+            <h4 className='news_title'>Dreamy Summer Day</h4>
+            <span className='news_subTitle'>와릿이즌 X 코랄리크 컬렉션</span>
+            {bestItem.filter((it) => it.id >= 3 && it.id <= 5).map((it) => (
+            <div className='news_item_section'>
+              <div className='news_item_info'>
+                <img src={it.img} className='news_item_img'/>
+                <div className='news_item_detail'>
+                  <span className='news_item_title'>{it.title}</span>
+                  <span className='news_item_origin_price'>{it.price}원</span>
+                  <span className='news_item_price'>{it.price - ((it.price) * (it.discount)/100)}원 <b>{it.discount}%</b></span>
+                </div>
+              </div>
+            </div>
+            ))}
           </div>
           <div className='news_item'>
             <Link to='/productAll'>
-              <img src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/29e153fdf828d624b726726db58e3a5e.jpg'/>
+              <img className='news_img' src='https://wiisnt.co.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/29e153fdf828d624b726726db58e3a5e.jpg'/>
             </Link>
-            <h4>SUMMER BREEZE</h4>
-            <span>와릿이즌 스트라이프 컬렉션</span>
+            <h4 className='news_title'>SUMMER BREEZE</h4>
+            <span className='news_subTitle'>와릿이즌 스트라이프 컬렉션</span>
+            {bestItem.filter((it) => it.id >= 6 && it.id <= 8).map((it) => (
+            <div className='news_item_section'>
+              <div className='news_item_info'>
+                <img src={it.img} className='news_item_img'/>
+                <div className='news_item_detail'>
+                  <span className='news_item_title'>{it.title}</span>
+                  <span className='news_item_origin_price'>{it.price}원</span>
+                  <span className='news_item_price'>{it.price - ((it.price) * (it.discount)/100)}원 <b>{it.discount}%</b></span>
+                </div>
+              </div>
+            </div>
+            ))}
           </div>
         </div>
       </News>
       <Influencer>
         <h1>인플루언서'S PICK</h1>
         <div className='influencer'>
+          {bestItem.filter((it) => it.id <= 4).map((it) => (
           <div className='influencer_item'>
             <img src='https://wiisnt.co.kr/web/product/tiny/202307/1c8bf0bca604ce038e08533cfe4f7b69.jpg'/>
+            <div className='influencer_item_info'>
+              <img src={it.img} className='influencer_item_img'/>
+              <div className='influencer_item_detail'>
+                <span className='influencer_item_title'>{it.title}</span>
+                <span className='influencer_item_origin_price'>{it.price}원</span>
+                <span className='influencer_item_price'>{it.price - ((it.price) * (it.discount)/100)}원 <b>{it.discount}%</b></span>
+              </div>
+            </div>
           </div>
-          <div className='influencer_item'>
-            <img src='https://wiisnt.co.kr/web/product/tiny/202307/daaf799587a57e946bca014018003fdc.jpg'/>
-          </div>
-          <div className='influencer_item'>
-            <img src='https://wiisnt.co.kr/web/product/tiny/202307/6007742a7ded5a31e5cb94335c901c3d.jpg'/>
-          </div>
-          <div className='influencer_item'>
-            <img src='https://wiisnt.co.kr/web/product/tiny/202307/640e600c1fe5cd1ff9ae73dafe3ee84e.jpg'/>
-          </div>
-          <div className='influencer_item'>
-            <img src='https://mblogthumb-phinf.pstatic.net/MjAyMzA1MzFfMTM4/MDAxNjg1NTA2MDk4NjM3.KkRN9hKhqcFEDLcd2UBtuzs9PlIr8PrFDlGlLkcJ2nEg.YoWgfKALB2bV5A522Tlm_E7HOkFNJvG6CCWi1EXky_Eg.PNG.wlwlqo8282/image.png?type=w800'/>
-          </div>
+          ))}
         </div>
       </Influencer>
       <LookBook>

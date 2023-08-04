@@ -58,12 +58,15 @@ const Atag = styled.a`
   color: #000;
   font-size: 13px;
   padding: 10px 20px;
-  cursor: pointer;
   .new {
     color: #068FFF;
   }
   .swim {
     color: red;
+  }
+  .store,
+  .log {
+    cursor: pointer;
   }
 `;
 
@@ -75,7 +78,7 @@ const Header = ({authentic, setAutentic}) => {
       <Content>
         <Ul>
           <li onClick={() => navigate('/productAll')}>
-            <Atag>스토어</Atag>
+            <Atag><span className='store'>스토어</span></Atag>
           </li>
           <li>
             <Atag>룩북</Atag>
@@ -108,11 +111,11 @@ const Header = ({authentic, setAutentic}) => {
           </li>
           {authentic ? (
             <li onClick={() => setAutentic(false)}>
-              <Atag>로그아웃</Atag>
+              <Atag><span className='log'>로그아웃</span></Atag>
             </li>
           ) : (
             <li onClick={() => navigate('/login')}>
-              <Atag>로그인</Atag>
+              <Atag><span className='log'>로그인</span></Atag>
             </li>
           )}
           <li>

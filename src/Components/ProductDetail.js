@@ -100,6 +100,7 @@ const ImgContainer = styled.div`
 `;
 
 const Size = styled.div`
+  margin-bottom: 10px;
   span {
     border: 1px solid #ccc;
     padding: 5px 10px;
@@ -126,6 +127,21 @@ const SelectItem = styled.div`
     span {
       color: #999;
     }
+    .selected_size {
+      width: 30px;
+      display: inline-block;
+    }
+  }
+  .itemClose {
+    display: inline-block;
+    font-weight: bold;
+    color: #999;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .item_price {
+    width: 150px;
+    text-align: right;
   }
   input {
     width: 50px;
@@ -164,18 +180,21 @@ const Buttons = styled.div`
     color: #fff;
     width: 45%;
     height: 60px;
+    cursor: default;
   }
   button:nth-child(2) {
     border: 1px solid #ccc;
     background-color: #fff;
     width: 45%;
     height: 60px;
+    cursor: default;
   }
   button:nth-child(3) {
     border: 1px solid #999;
     background-color: #999;
     width: 10%;
     height: 60px;
+    cursor: default;
   }
 `;
 
@@ -201,6 +220,18 @@ const ProductDetailInfo = styled.div`
 
 const ProductDetail = () => {
   let {id} = useParams();
+  const [sizeValue, setSizeValue] = useState("");
+  const [isSize, setIsSize] = useState(false);
+  const getSizeValue = (e) => {
+    let sizeValue = e.target.innerText;
+    setSizeValue(sizeValue);
+    setIsSize(true);
+  }
+  const resetItem = () => {
+    setIsSize(false);
+    setItemCounter(0);
+  }
+  
   const [loading, setLoading] = useState(false);
   const [detailTrueFalse, setDetailTrueFalse] = useState(false);
   const [product, setProduct] = useState([]);
@@ -245,27 +276,29 @@ const ProductDetail = () => {
             <img src={product.img}/>
           </ImgContainer>
           <Size>
-            <span>{product.size}</span>
-            <span>{product.size}</span>
-            <span>{product.size}</span>
-            {product.size.map((it) => (
-              <span>{it}</span>
+            {product.size?.map((it) => (
+              <span value={sizeValue} onClick={getSizeValue}>{it}</span>
             ))}
           </Size>
-          <SelectItem>
-            <div className='select_size'>
-              <h4>{product.title}</h4>
-              <span>{product.size}</span>
-            </div>
-            <div>
-              <button onClick={() => itemCounter > 1 && setItemCounter(itemCounter - 1)}>-</button>
-              <input className='item_count' value={itemCounter} type='text' min="1"/>
-              <button onClick={() => setItemCounter(itemCounter + 1)}>+</button>
-            </div>
-            <div className='item_price'>
-              <span>{discountPrice * itemCounter}</span>
-            </div>
-          </SelectItem>
+          {isSize && 
+            <SelectItem>
+              <div className='select_size'>
+                <h4>{product.title}</h4>
+                <div>
+                  <span className='selected_size'>{sizeValue}</span>
+                </div>
+              </div>
+              <div>
+                <button onClick={() => itemCounter > 1 && setItemCounter(itemCounter - 1)}>-</button>
+                <input className='item_count' value={itemCounter} type='text' min="1"/>
+                <button onClick={() => setItemCounter(itemCounter + 1)}>+</button>
+                <span className='itemClose' onClick={resetItem}>x</span>
+              </div>
+              <div className='item_price'>
+                <span>{discountPrice * itemCounter}</span>
+              </div>
+            </SelectItem>
+          }
           <TotalPrice>
             <span>총 상품금액</span>
             <span>{discountPrice * itemCounter}원 ({itemCounter}개)</span>

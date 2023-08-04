@@ -72,6 +72,14 @@ const Atag = styled.a`
 
 const Header = ({authentic, setAutentic}) => {
   const navigate = useNavigate();
+  const logOut = () => {
+    if(window.confirm("로그아웃 하시겠습니까?")) {
+      setAutentic(false);
+      alert("로그아웃 되었습니다");
+    } else {
+      setAutentic(true);
+    }
+  }
   return (
     <Container>
       <Banner>WEEKLY BEST ITEM🔥</Banner>
@@ -110,8 +118,8 @@ const Header = ({authentic, setAutentic}) => {
             <Atag>검색</Atag>
           </li>
           {authentic ? (
-            <li onClick={() => setAutentic(false)}>
-              <Atag><span className='log'>로그아웃</span></Atag>
+            <li>
+              <Atag><span className='log' onClick={logOut}>로그아웃</span></Atag>
             </li>
           ) : (
             <li onClick={() => navigate('/login')}>

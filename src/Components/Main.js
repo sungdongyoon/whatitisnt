@@ -389,8 +389,8 @@ const Main = () => {
                 <div>
                   <span className='bestitem_title'>{it.title}</span>
                   <span className='bestitem_discount'>{it.discount}%</span>
-                  <span className='bestitem_price'>{it.price - ((it.price) * (it.discount)/100)}원</span>
-                  <span className='bestitem_originPrice'>{it.price}원</span>
+                  <span className='bestitem_price'>{(it.price - ((it.price) * (it.discount)/100)).toLocaleString()}원</span>
+                  <span className='bestitem_originPrice'>{(it.price).toLocaleString()}원</span>
                 </div>
               </div>
             ))}
@@ -411,8 +411,8 @@ const Main = () => {
                 <img src={it.img} className='news_item_img'/>
                 <div className='news_item_detail'>
                   <span className='news_item_title'>{it.title}</span>
-                  <span className='news_item_origin_price'>{it.price}원</span>
-                  <span className='news_item_price'>{it.price - ((it.price) * (it.discount)/100)}원 <b>{it.discount}%</b></span>
+                  <span className='news_item_origin_price'>{(it.price).toLocaleString()}원</span>
+                  <span className='news_item_price'>{(it.price - ((it.price) * (it.discount)/100)).toLocaleString()}원 <b>{it.discount}%</b></span>
                 </div>
               </div>
             </div>
@@ -430,8 +430,8 @@ const Main = () => {
                 <img src={it.img} className='news_item_img'/>
                 <div className='news_item_detail'>
                   <span className='news_item_title'>{it.title}</span>
-                  <span className='news_item_origin_price'>{it.price}원</span>
-                  <span className='news_item_price'>{it.price - ((it.price) * (it.discount)/100)}원 <b>{it.discount}%</b></span>
+                  <span className='news_item_origin_price'>{(it.price).toLocaleString()}원</span>
+                  <span className='news_item_price'>{(it.price - ((it.price) * (it.discount)/100)).toLocaleString()}원 <b>{it.discount}%</b></span>
                 </div>
               </div>
             </div>
@@ -449,8 +449,8 @@ const Main = () => {
                 <img src={it.img} className='news_item_img'/>
                 <div className='news_item_detail'>
                   <span className='news_item_title'>{it.title}</span>
-                  <span className='news_item_origin_price'>{it.price}원</span>
-                  <span className='news_item_price'>{it.price - ((it.price) * (it.discount)/100)}원 <b>{it.discount}%</b></span>
+                  <span className='news_item_origin_price'>{(it.price).toLocaleString()}원</span>
+                  <span className='news_item_price'>{(it.price - ((it.price) * (it.discount)/100)).toLocaleString()}원 <b>{it.discount}%</b></span>
                 </div>
               </div>
             </div>
@@ -461,15 +461,15 @@ const Main = () => {
       <Influencer>
         <h1>인플루언서'S PICK</h1>
         <div className='influencer'>
-          {bestItem.filter((it) => it.id <= 4).map((it) => (
+          {bestItem.filter((it) => it.id >= 14).map((it) => (
           <div className='influencer_item'>
-            <img src='https://wiisnt.co.kr/web/product/tiny/202307/1c8bf0bca604ce038e08533cfe4f7b69.jpg'/>
+            <img src={it.thumb}/>
             <div className='influencer_item_info'>
               <img src={it.img} className='influencer_item_img'/>
               <div className='influencer_item_detail'>
                 <span className='influencer_item_title'>{it.title}</span>
-                <span className='influencer_item_origin_price'>{it.price}원</span>
-                <span className='influencer_item_price'>{it.price - ((it.price) * (it.discount)/100)}원 <b>{it.discount}%</b></span>
+                <span className='influencer_item_origin_price'>{(it.price).toLocaleString()}원</span>
+                <span className='influencer_item_price'>{(it.price - ((it.price) * (it.discount)/100)).toLocaleString()}원 <b>{it.discount}%</b></span>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
@@ -130,9 +130,11 @@ const Button2 = styled.button`
 `;
 
 const Login = ({setAutentic}) => {
+  const [idValue, setIdValue] = useState("");
   const navigate = useNavigate();
   const userLogin = (e) => {
     e.preventDefault();
+    alert(`${idValue}님 반갑습니다`)
     setAutentic(true);
     navigate('/');
   }
@@ -143,8 +145,8 @@ const Login = ({setAutentic}) => {
           LOGIN
         </LoginTitle>
         <Form onSubmit={(e) => userLogin(e)}>
-          <Input type='text' placeholder='아이디'/>
-          <Input type='text' placeholder='비밀번호'/>
+          <Input type='text' placeholder='아이디' value={idValue} onInput={(e) => setIdValue(e.target.value)} required/>
+          <Input type='password' placeholder='비밀번호' required/>
           <Button>로그인</Button>
         </Form>
         <Nav>

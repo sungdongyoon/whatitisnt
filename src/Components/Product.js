@@ -8,8 +8,13 @@ const Container = styled.div`
   cursor: pointer;
 `;
 
-const Img = styled.img `
+const Img = styled.div `
   width: 100%;
+  height: 400px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Title = styled.div`
@@ -48,12 +53,14 @@ const Product = ({it}) => {
   }
   return (
     <Container onClick={showItem}>
-      <Img src={it.img}/>
+      <Img>
+        <img src={it.img}/>
+      </Img>
       <Title>{it.title}</Title>
       <PriceInfo>
         <Discount>{it.discount}%</Discount>
-        <DiscountPrice>{it.price - ((it.price) * ((it.discount)/100))}원</DiscountPrice>
-        <Price>{it.price}원</Price>
+        <DiscountPrice>{(it.price - ((it.price) * ((it.discount)/100))).toLocaleString()}원</DiscountPrice>
+        <Price>{(it.price).toLocaleString()}원</Price>
       </PriceInfo>
       
     </Container>

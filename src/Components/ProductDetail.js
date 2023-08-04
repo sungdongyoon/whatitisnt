@@ -263,8 +263,8 @@ const ProductDetail = () => {
             <span>{product.title}<br/>{product.new ? <span className='newProduct'>신상품</span> : ""}{product.choice ? <span className='pickProduct'>에디터's Pick</span> : ""}</span>
             <img src='https://wiisnt.co.kr/images/cm_icon_socials.gif'/>
           </div>
-          <div className='origin-price'>{product.price}원</div>
-          <div className='price'><b>{product.discount}%</b>{discountPrice}원</div>
+          <div className='origin-price'>{(product.price)?.toLocaleString()}원</div>
+          <div className='price'><b>{product.discount}%</b>{discountPrice.toLocaleString()}원</div>
           <div className='benefitBox'>
             <span>공식 홈페이지 <b>회원혜택</b> 확인하기</span>
             <span className='go'>Go</span>
@@ -295,13 +295,13 @@ const ProductDetail = () => {
                 <span className='itemClose' onClick={resetItem}>x</span>
               </div>
               <div className='item_price'>
-                <span>{discountPrice * itemCounter}</span>
+                <span>{(discountPrice * itemCounter).toLocaleString()}</span>
               </div>
             </SelectItem>
           }
           <TotalPrice>
             <span>총 상품금액</span>
-            <span>{discountPrice * itemCounter}원 ({itemCounter}개)</span>
+            <span>{(discountPrice * itemCounter).toLocaleString()}원 ({itemCounter}개)</span>
           </TotalPrice>
           <Buttons>
             <button>바로 구매하기</button>

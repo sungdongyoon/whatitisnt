@@ -258,7 +258,7 @@ const Main = () => {
   const [bestItem, setBesteItem] = useState([]);
   const [slidePx, setSlidePx] = useState(0);
   const getBestItem = async () => {
-    // let url = `http://localhost:3000/products/`;
+    // let url = `http://localhost:3000/products`;
     let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products`;
     let response = await fetch(url);
     let data = await response.json();
@@ -348,6 +348,7 @@ const Main = () => {
             </Link>
             <h4>EVERYDAY Graphic T-shirt!</h4>
             <span>그래픽티 에디토리얼</span>
+            <span>{bestItem[0]?.title}</span>
           </div>
           <div className='news_item'>
             <Link to='/productAll'>

@@ -191,6 +191,7 @@ const News = styled.div`
         .news_item_info {
           display: flex;
           align-items: center;
+          cursor: pointer;
           .news_item_img {
             width: 70px;
             margin-right: 10px;
@@ -242,6 +243,7 @@ const Influencer = styled.div`
       }
       .influencer_item_info {
         display: flex;
+        cursor: pointer;
         .influencer_item_detail {
           display: flex;
           flex-direction: column;
@@ -407,7 +409,7 @@ const Main = () => {
             <span className='news_subTitle'>그래픽티 에디토리얼</span>
             {bestItem.filter((it) => it.id <= 2).map((it) => (
             <div className='news_item_section'>
-              <div className='news_item_info'>
+              <div className='news_item_info' onClick={() => navigate(`/products/${it.id}`)}>
                 <img src={it.img} className='news_item_img'/>
                 <div className='news_item_detail'>
                   <span className='news_item_title'>{it.title}</span>
@@ -426,7 +428,7 @@ const Main = () => {
             <span className='news_subTitle'>와릿이즌 X 코랄리크 컬렉션</span>
             {bestItem.filter((it) => it.id >= 3 && it.id <= 5).map((it) => (
             <div className='news_item_section'>
-              <div className='news_item_info'>
+              <div className='news_item_info' onClick={() => navigate(`/products/${it.id}`)}>
                 <img src={it.img} className='news_item_img'/>
                 <div className='news_item_detail'>
                   <span className='news_item_title'>{it.title}</span>
@@ -445,7 +447,7 @@ const Main = () => {
             <span className='news_subTitle'>와릿이즌 스트라이프 컬렉션</span>
             {bestItem.filter((it) => it.id >= 6 && it.id <= 8).map((it) => (
             <div className='news_item_section'>
-              <div className='news_item_info'>
+              <div className='news_item_info' onClick={() => navigate(`/products/${it.id}`)}>
                 <img src={it.img} className='news_item_img'/>
                 <div className='news_item_detail'>
                   <span className='news_item_title'>{it.title}</span>
@@ -464,7 +466,7 @@ const Main = () => {
           {bestItem.filter((it) => it.id >= 14).map((it) => (
           <div className='influencer_item'>
             <img src={it.thumb}/>
-            <div className='influencer_item_info'>
+            <div className='influencer_item_info' onClick={() => navigate(`/products/${it.id}`)}>
               <img src={it.img} className='influencer_item_img'/>
               <div className='influencer_item_detail'>
                 <span className='influencer_item_title'>{it.title}</span>

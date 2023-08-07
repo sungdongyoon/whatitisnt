@@ -74,25 +74,20 @@ const Title = styled.div`
 const ProductAll = () => {
   const newItem = ["베스트 아이템", "반소매 티셔츠", "상의", "아우터", "하의", "우먼", "모자", "가방", "신발", "라이프", "악세사리"];
   const [productList, setProductList] = useState([]);
-  const navigate = useNavigate();
-  const [query, setQuery] = useSearchParams();
-  const search = (event) => {
-    if(event.key === "Enter") {
-      let keyword = event.target.value;
-      console.log("키워드", keyword);
-      navigate(`/?q=${keyword}`);
-      // navigate('/products/0')
-    }
+  const [itemName, setItemName] = useState('');
+  const getItemName = (e) => {
+    setItemName(e.target.value.toLowerCase());
+    console.log(itemName);
   }
+  const filteredItem = productList.filter((it) => it.title.toLowerCase().includes(itemName));
   const getProduct = async () => {
-    let searchQuery = query.get('q') || '';
     // let url = `http://localhost:3000/products/`;
-    let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products/${searchQuery}`;
+    let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products/`;
     let response = await fetch(url);
     let data = await response.json();
-    console.log("데이터", data);
+    // console.log("데이터", data);
     setProductList(data);
-    console.log("리스트", productList)
+    // console.log("리스트", productList)
   };
   useEffect(() => {
     getProduct();
@@ -124,12 +119,12 @@ const ProductAll = () => {
             <span>등록제품 : {productList.length}개</span>
           </div>
           <div>
-            <input type='text' placeholder='제품 검색' onKeyPress={search}/>
+            <input type='text' placeholder='제품 검색' onChange={getItemName}/>
             <label>🍳</label>
           </div>
         </Title>
         <Row>
-          {productList.map((it) => (
+          {filteredItem.map((it) => (
             <Col md={3} sm={12} key={it.id}>
               <Product it={it}/>
             </Col>

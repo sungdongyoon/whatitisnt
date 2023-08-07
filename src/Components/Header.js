@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import theme from '../style/theme';
 
 const Container = styled.div`
   display: flex;
@@ -48,7 +49,6 @@ const Ul = styled.ul`
   align-items: center;
   list-style: none;
   padding: 0;
-  // margin: 0 300px;
   flex: 1;
 `;
 
@@ -67,6 +67,9 @@ const Atag = styled.a`
   .store,
   .log {
     cursor: pointer;
+  }
+  @media screen and ${theme.laptop} {
+    display: none;
   }
 `;
 

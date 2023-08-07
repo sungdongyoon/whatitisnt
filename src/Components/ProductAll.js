@@ -8,16 +8,17 @@ import Footer from './Footer';
 
 
 const Wrap = styled.div`
+  display: flex;
+  align-items: flex-start;
   .Container {
-    margin-top: 100px;
+    margin-top: 200px;
   }
 `;
 
 const Aside = styled.div`
   position: fixed;
-  top: 170px;
-  left: 350px;
-  width: 200px;
+  left: 10%;
+  width: 250px;
   .title {
     display: flex;
     justify-content: space-between;
@@ -47,7 +48,6 @@ const Aside = styled.div`
 `;
 
 const Title = styled.div`
-  height: 150px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -94,25 +94,25 @@ const ProductAll = () => {
   }, [])
   return (
     <Wrap>
-      <Aside>
-        <div className='title'>
-          <span>🔥23SS NEW ARRIVAL</span>
-          <span>➕</span>
-        </div>
-        <ul>
-          {newItem.map((it) => (
+      <Container className='Container'>
+        <Aside>
+          <div className='title'>
+            <span>🔥23SS NEW ARRIVAL</span>
+            <span>➕</span>
+          </div>
+          <ul>
+            {newItem.map((it) => (
+              <li>
+                <span>{it}</span>
+                <span>➕</span>
+              </li>
+            ))}
             <li>
-              <span>{it}</span>
+              <span className='outlet'>OUTLET</span>
               <span>➕</span>
             </li>
-          ))}
-          <li>
-            <span className='outlet'>OUTLET</span>
-            <span>➕</span>
-          </li>
-        </ul>
-      </Aside>
-      <Container className='Container'>
+          </ul>
+        </Aside>  
         <Title>
           <div>
             <h5>베스트 아이템</h5>

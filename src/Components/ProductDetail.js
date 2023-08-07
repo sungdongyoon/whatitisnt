@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { ClipLoader } from 'react-spinners';
+import theme from '../style/theme';
 
 const Body = styled.body`
   width: 100%;
@@ -21,6 +22,9 @@ const Container = styled.div`
   margin: 0 500px;
   margin-top: 80px;
   gap: 50px;
+  @media screen and ${theme.laptop} {
+    flex-direction: column;
+  }
 `;
 
 const Img = styled.img`
@@ -35,6 +39,9 @@ const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
   width: 40%;
+  @media screen and ${theme.laptop} {
+    width: 100%;
+  }
   .title {
     font-size: 30px;
     font-weight: bold;

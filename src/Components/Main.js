@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import theme from '../style/theme';
 
 const Container = styled.div`
   margin-top: 100px;
@@ -23,34 +24,43 @@ const Phamplat = styled.div`
   display: flex;
   flex: 1;
   .pham {
-    width: 100%;
-    height: 1200px;
+    width: 33.3%;
     background-size: cover;
-    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    padding: 40px;
-    padding-right: 200px;
-    font-size: 40px;
-    font-weight: bold;
-    span {
-      margin-bottom: 20px;
+    position: relative;
+    img {
+      width: 100%;
     }
-    span:last-child {
-      font-size: 20px;
-      font-weight: normal;
+    div {
+      position: absolute;
+      bottom: 0;
+      span {
+        display: block;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        @media screen and ${theme.laptop} {
+          font-size: 30px;
+        }
+        @media screen and ${theme.tablet} {
+          font-size: 20px;
+        }
+      }
+      span:last-child {
+        font-size: 20px;
+        font-weight: normal;
+        @media screen and ${theme.laptop} {
+          font-size: 20px;
+        }
+        @media screen and ${theme.tablet} {
+          font-size: 16px;
+        }
+      }
     }
-  }
-  .pham1 {
-    background-image: url('http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230707_01_.jpg');
-  }
-  .pham2 {
-    background-image: url('http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230703_03_1.jpg');
-  }
-  .pham3 {
-    background-image: url('http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230703_02_.jpg');
   }
 `;
 
@@ -72,7 +82,7 @@ const Ul = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin: 0 80px;
+    margin: 0 5%;
     img {
       width: 70px;
       height: 70px;
@@ -92,6 +102,12 @@ const BestItem = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  @media screen and ${theme.laptop} {
+    width: 840px;
+  }
+  @media screen and ${theme.tablet} {
+    width: 560px;
+  }
   .slide_left {
     position: absolute;
     left: -100px;
@@ -100,6 +116,9 @@ const BestItem = styled.div`
     font-size: 50px;
     color: #ccc;
     cursor: pointer;
+    @media screen and ${theme.laptop} {
+      left: -50px;
+    }
   }
   .slide_right {
     position: absolute;
@@ -109,6 +128,9 @@ const BestItem = styled.div`
     font-size: 50px;
     color: #ccc;
     cursor: pointer;
+    @media screen and ${theme.laptop} {
+      right: -50px;
+    }
   }
   h1 {
     font-size: 26px;
@@ -118,6 +140,12 @@ const BestItem = styled.div`
     width: 1400px;
     display: flex;
     overflow: hidden;
+    @media screen and ${theme.laptop} {
+      width: 840px;
+    }
+    @media screen and ${theme.tablet} {
+      width: 560px;
+    }
     .bestitem_item {
       display: flex;
       flex-direction: column;
@@ -159,6 +187,12 @@ const News = styled.div`
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
+  @media screen and ${theme.laptop} {
+    width: 840px;
+  }
+  @media screen and ${theme.tablet} {
+    width: 560px;
+  }
   h1 {
     font-size: 26px;
     font-weight: bold;
@@ -175,12 +209,18 @@ const News = styled.div`
         font-weight: bold;
         font-size: 16px;
         text-align: center;
+        @media screen and ${theme.tablet} {
+          font-size: 12px;
+        }
       }
       .news_subTitle {
         display: block;
         font-size: 12px;
         font-weight: bold;
         margin-bottom: 30px;
+        @media screen and ${theme.tablet} {
+          font-size: 10px;
+        }
       }
       .news_img {
         width: 100%;
@@ -192,6 +232,12 @@ const News = styled.div`
           display: flex;
           align-items: center;
           cursor: pointer;
+          @media screen and ${theme.tablet} {
+            flex-direction: column;
+            align-items: flex-start;
+            align-items: center;
+            text-align: center;
+          }
           .news_item_img {
             width: 70px;
             margin-right: 10px;
@@ -212,6 +258,11 @@ const News = styled.div`
                 color: red;
               }
             }
+            @media screen and ${theme.laptop} {
+              .news_item_title {
+                font-size: 12px;
+              }
+            }
           }
         }
       }
@@ -225,6 +276,12 @@ const Influencer = styled.div`
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
+  @media screen and ${theme.laptop} {
+    width: 840px;
+  }
+  @media screen and ${theme.tablet} {
+    width: 560px;
+  }
   h1 {
     font-size: 26px;
     font-weight: bold;
@@ -232,18 +289,42 @@ const Influencer = styled.div`
   .influencer {
     display: flex;
     justify-content: space-between;
+    @media screen and ${theme.tablet} {
+      flex-direction: column;
+    }
     .influencer_item {
       width: 18%;
-      img {
+      @media screen and ${theme.tablet} {
         width: 100%;
-        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
       }
-      .influencer_item_img {
-        width: 70px;
+      .influencer_img {
+        width: 100%;
+        height: 350px;
+        margin-bottom: 10px;
+        @media screen and ${theme.laptop} {
+          height: 200px;
+        }
+        @media screen and ${theme.tablet} {
+          height: 300px;
+          width: 200px;
+        }
       }
       .influencer_item_info {
         display: flex;
         cursor: pointer;
+        .influencer_item_img {
+          width: 70px;
+          @media screen and ${theme.laptop} {
+            width: 60px;
+            height: 100%;
+          }
+          @media screen and ${theme.tablet} {
+            width: 200px;
+            height: 200px;
+          }
+        }
         .influencer_item_detail {
           display: flex;
           flex-direction: column;
@@ -251,6 +332,9 @@ const Influencer = styled.div`
           padding-left: 10px;
           width: 100%;
           font-size: 12px;
+          @media screen and ${theme.tablet} {
+            text-align: center;
+          }
           .influencer_item_title {
           }
           .influencer_item_origin_price {
@@ -274,6 +358,12 @@ const LookBook = styled.div`
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
+  @media screen and ${theme.laptop} {
+    width: 840px;
+  }
+  @media screen and ${theme.tablet} {
+    width: 560px;
+  }
   h1 {
     font-size: 26px;
     font-weight: bold;
@@ -300,12 +390,18 @@ const LookBook = styled.div`
           font-size: 16px;
           font-weight: bold;
           text-align: center;
+          @media screen and ${theme.laptop} {
+            font-size: 14px;
+          }
         }
         span {
           display: block;
           text-align: center;
           color: #999;
           font-size: 14px;
+          @media screen and ${theme.laptop} {
+            font-size: 12px;
+          }
         }
       }
     }
@@ -368,16 +464,25 @@ const Main = () => {
       </Category>
       <Phamplat>
         <div className='pham1 pham'>
-          <span>베스트 아이템</span>
-          <span>지금 가장 인기있는 아이템</span>
+          <img src='http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230707_01_.jpg'/>
+          <div>
+            <span>베스트 아이템</span>
+            <span>지금 가장 인기있는 아이템</span>
+          </div>
         </div>
         <div className='pham2 pham'>
-          <span>그래픽 티셔츠 뭐입지?</span>
-          <span>취향따라 골라입는 티셔츠 추천</span>
+          <img src='http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230703_03_1.jpg'/>
+          <div>
+            <span>그래픽 티셔츠 뭐입지?</span>
+            <span>취향따라 골라입는 티셔츠 추천</span>
+          </div>
         </div>
         <div className='pham3 pham'>
-          <span>짐이 많은 당신을 위해</span>
-          <span>인기상품 재입고</span>
+          <img src='http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230703_02_.jpg'/>
+          <div>
+            <span>짐이 많은 당신을 위해</span>
+            <span>인기상품 재입고</span>
+          </div>
         </div>
       </Phamplat>
       <BestItem>
@@ -465,10 +570,10 @@ const Main = () => {
         <div className='influencer'>
           {bestItem.filter((it) => it.id >= 14).map((it) => (
           <div className='influencer_item'>
-            <img src={it.thumb}/>
+            <img src={it.thumb} className='influencer_img'/>
             <div className='influencer_item_info' onClick={() => navigate(`/products/${it.id}`)}>
-              <img src={it.img} className='influencer_item_img'/>
               <div className='influencer_item_detail'>
+                <img src={it.img} className='influencer_item_img'/>
                 <span className='influencer_item_title'>{it.title}</span>
                 <span className='influencer_item_origin_price'>{(it.price).toLocaleString()}원</span>
                 <span className='influencer_item_price'>{(it.price - ((it.price) * (it.discount)/100)).toLocaleString()}원 <b>{it.discount}%</b></span>

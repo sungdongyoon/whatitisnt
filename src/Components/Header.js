@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import theme from '../style/theme';
 
 const Container = styled.div`
+  height: 100px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -30,10 +31,10 @@ const Banner = styled.div`
 const Content = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #eee;
-  padding: 15px 0;
   flex: 1;
 `;
 
@@ -47,17 +48,20 @@ const Ul = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
   list-style: none;
   padding: 0;
+  margin: 0;
   flex: 1;
 `;
 
 const Atag = styled.a`
+  width: 100%;
   display: inline-block;
   text-decoration: none;
   color: #000;
   font-size: 13px;
-  padding: 10px 20px;
+  padding: 0px 20px;
   .new {
     color: #068FFF;
   }
@@ -69,7 +73,7 @@ const Atag = styled.a`
     cursor: pointer;
   }
   @media screen and ${theme.laptop} {
-    display: none;
+    padding: 0px 10px;
   }
 `;
 

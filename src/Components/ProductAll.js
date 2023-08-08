@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Product from './Product';
 import Footer from './Footer';
+import theme from '../style/theme';
 
 
 const Wrap = styled.div`
@@ -19,7 +20,20 @@ const Aside = styled.div`
   position: fixed;
   left: 10%;
   width: 250px;
-  .title {
+  @media screen and ${theme.onlyAside} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 130px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 10px;
+  }
+  .asideNew {
     display: flex;
     justify-content: space-between;
     padding-bottom: 5px;
@@ -27,9 +41,24 @@ const Aside = styled.div`
     font-size: 12px;
     font-weight: bold;
     color: #068FFF;
+    @media screen and ${theme.onlyAside} {
+      width: 10%;
+      margin: 0;
+      padding: 0;
+      border-bottom: none;
+      .plus {
+        display: none;
+      }
+    }
   }
   ul {
     padding: 0;
+    @media screen and ${theme.onlyAside} {
+      display: flex;
+      align-items: center;
+      width: 80%;
+      margin: 0;
+    }
   }
   li {
     list-style: none;
@@ -40,9 +69,18 @@ const Aside = styled.div`
     border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
-    .outlet {
+    .asideOutlet {
       color: red;
       font-weight: bold;
+    }
+    @media screen and ${theme.onlyAside} {
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      border-bottom: none;
+      .plus {
+        display: none;
+      }
     }
   }
 `;
@@ -72,13 +110,17 @@ const Title = styled.div`
 
 
 const ProductAll = () => {
-  const newItem = ["베스트 아이템", "반소매 티셔츠", "상의", "아우터", "하의", "우먼", "모자", "가방", "신발", "라이프", "악세사리"];
+  const pageWidth = window.innerWidth;
+  const newItem = ["BEST", "반소매 티셔츠", "상의", "아우터", "하의", "우먼", "모자", "가방", "신발", "라이프", "악세사리"];
   const [productList, setProductList] = useState([]);
   const [itemName, setItemName] = useState('');
   const getItemName = (e) => {
     setItemName(e.target.value.toLowerCase());
     console.log(itemName);
   }
+  const [mdValue, setMdValue] = useState(3);
+  
+
   const filteredItem = productList.filter((it) => it.title.toLowerCase().includes(itemName));
   const getProduct = async () => {
     // let url = `http://localhost:3000/products/`;
@@ -89,27 +131,52 @@ const ProductAll = () => {
     setProductList(data);
     // console.log("리스트", productList)
   };
+
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  })
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
   useEffect(() => {
     getProduct();
-  }, [])
+    if(pageWidth >= 1400) {
+      setMdValue(3);
+    }
+    if(pageWidth < 1400 & pageWidth >= 1024) {
+      setMdValue(4);
+    }
+    if(pageWidth < 1024) {
+      setMdValue(5);
+    }
+    console.log("?", pageWidth, mdValue);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [windowSize])
   return (
     <Wrap>
       <Container className='Container'>
         <Aside>
-          <div className='title'>
+          <div className='asideNew'>
             <span>🔥23SS NEW ARRIVAL</span>
-            <span>➕</span>
+            <span className='plus'>➕</span>
           </div>
           <ul>
             {newItem.map((it) => (
               <li>
                 <span>{it}</span>
-                <span>➕</span>
+                <span className='plus'>➕</span>
               </li>
             ))}
             <li>
-              <span className='outlet'>OUTLET</span>
-              <span>➕</span>
+              <span className='asideOutlet'>OUTLET</span>
+              <span className='plus'>➕</span>
             </li>
           </ul>
         </Aside>  
@@ -125,7 +192,7 @@ const ProductAll = () => {
         </Title>
         <Row>
           {filteredItem.map((it) => (
-            <Col md={3} sm={12} key={it.id}>
+            <Col md={mdValue} sm={12} key={it.id}>
               <Product it={it}/>
             </Col>
           ))}

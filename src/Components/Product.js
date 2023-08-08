@@ -1,11 +1,15 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import theme from '../style/theme';
 
 const Container = styled.div`
-  margin: 40px 50px;
   width: 320px;
   cursor: pointer;
+  margin-bottom: 50px;
+  @media screen and ${theme.tablet} {
+    margin: 50px;
+  }
 `;
 
 const Img = styled.div `
@@ -62,7 +66,6 @@ const Product = ({it}) => {
         <DiscountPrice>{(it.price - ((it.price) * ((it.discount)/100))).toLocaleString()}원</DiscountPrice>
         <Price>{(it.price).toLocaleString()}원</Price>
       </PriceInfo>
-      
     </Container>
   )
 }

@@ -205,6 +205,10 @@ const News = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+      @media screen and ${theme.tablet} {
+        border: 1px solid #eee;
+      }
+      
       .news_title {
         font-weight: bold;
         font-size: 16px;
@@ -298,6 +302,7 @@ const Influencer = styled.div`
         width: 100%;
         display: flex;
         align-items: center;
+        margin: 10px 0;
       }
       .influencer_img {
         width: 100%;
@@ -308,10 +313,11 @@ const Influencer = styled.div`
         }
         @media screen and ${theme.tablet} {
           height: 300px;
-          width: 200px;
+          width: 250px;
         }
       }
       .influencer_item_info {
+        text-align: center;
         display: flex;
         cursor: pointer;
         .influencer_item_img {
@@ -572,8 +578,8 @@ const Main = () => {
           <div className='influencer_item'>
             <img src={it.thumb} className='influencer_img'/>
             <div className='influencer_item_info' onClick={() => navigate(`/products/${it.id}`)}>
+              <img src={it.img} className='influencer_item_img'/>
               <div className='influencer_item_detail'>
-                <img src={it.img} className='influencer_item_img'/>
                 <span className='influencer_item_title'>{it.title}</span>
                 <span className='influencer_item_origin_price'>{(it.price).toLocaleString()}원</span>
                 <span className='influencer_item_price'>{(it.price - ((it.price) * (it.discount)/100)).toLocaleString()}원 <b>{it.discount}%</b></span>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import theme from '../style/theme';
@@ -53,6 +53,9 @@ const Ul = styled.ul`
   padding: 0;
   margin: 0;
   flex: 1;
+  @media screen and ${theme.mobile} {
+    display: none;
+  }
 `;
 
 const Atag = styled.a`
@@ -75,9 +78,56 @@ const Atag = styled.a`
   @media screen and ${theme.laptop} {
     padding: 0px 10px;
   }
+  @media screen and ${theme.tablet} {
+    font-size: 11px;
+    padding: 0px 5px;
+  }
+`;
+
+const MenuBtn = styled.div`
+  width: 30px;
+  height: 30px;
+  display: none;
+  font-size: 30px;
+  color: ${(props) => props.isToggle ? "#fff" : "#000"};
+  position: absolute;
+  right: 30px;
+  transition: 0.5s;
+  transform: ${(props) => props.isToggle && "scaleX(-1)"};
+  z-index: 10;
+  cursor: pointer;
+  @media screen and ${theme.mobile} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: none;
+  width: 100vw;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: ${(props) => (props.isToggle ? "translateY(0)" : `translateY(-500px)`)};
+  transition: 1s;
+  div {
+    color: #fff;
+  }
+  @media screen and ${theme.mobile} {
+    display: block;
+  }
 `;
 
 const Header = ({authentic, setAutentic}) => {
+  const [isToggle, setIsToggle] = useState(false);
+  const onClickToggle = () => {
+    setIsToggle(!isToggle);
+  }
   const navigate = useNavigate();
   const logOut = () => {
     if(window.confirm("로그아웃 하시겠습니까?")) {
@@ -137,6 +187,10 @@ const Header = ({authentic, setAutentic}) => {
             <Atag>장바구니</Atag>
           </li>
         </Ul>
+        <MenuBtn onClick={onClickToggle} isToggle={isToggle}>{">"}</MenuBtn>
+        <MobileMenu isToggle={isToggle}>
+          <div>ddd</div>
+        </MobileMenu>
       </Content>
     </Container>
   )

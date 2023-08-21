@@ -10,6 +10,15 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media screen and ${theme.laptop} {
+    border: 3px solid red;
+  }
+  @media screen and ${theme.tablet} {
+    border: 3px solid blue;
+  }
+  @media screen and ${theme.mobile} {
+    border: 3px solid yellow;
+  }
 `;
 
 const Banner = styled.div`
@@ -71,6 +80,7 @@ const Category = styled.div`
 `;
 
 const Ul = styled.div`
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -90,6 +100,29 @@ const Ul = styled.div`
     }
     span {
       margin-top: 10px;
+    }
+  }
+  @media screen and ${theme.tablet} {
+    li {
+      img {
+        width: 50px;
+        height: 50px;
+      }
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+  @media screen and ${theme.mobile} {
+    li {
+      margin: 0 3%;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      span {
+        font-size: 8px;
+      }
     }
   }
 `;

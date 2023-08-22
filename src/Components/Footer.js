@@ -63,7 +63,7 @@ const Wraps = styled.div`
   width: 50%;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
   @media screen and ${theme.mobile} {
     width: 100%;
   }
@@ -121,6 +121,7 @@ const Company = styled.div`
   }
   @media screen and ${theme.mobile} {
     width: 100%;
+    border: none;
   }
 `;
 

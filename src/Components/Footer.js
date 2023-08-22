@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import theme from '../style/theme';
 
 const Container = styled.div`
   border-top: 1px solid #000;
@@ -11,17 +12,24 @@ const Container = styled.div`
 
 const Content = styled.div`
   width: 80%;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and ${theme.mobile} {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
 `;
 
 const Information = styled.div`
+  width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  flex: 4;
   img {
     margin-bottom: 30px;
   }
@@ -34,19 +42,53 @@ const Information = styled.div`
     font-size: 12px;
     line-height: 20px;
   }
+  @media screen and ${theme.laptop} {
+    .info_title {
+      font-size: 12px;
+    }
+    span {
+      font-size: 10px;
+    }
+  }
+  @media screen and ${theme.mobile} {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+`;
+
+const Wraps = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+  @media screen and ${theme.mobile} {
+    width: 100%;
+  }
 `;
 
 const Help = styled.div`
-  border-right: 1px solid #000;
+  width: 50%;
+  height: 100%;
   border-left: 1px solid #000;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  flex: 1;
-  padding-left: 50px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   .title {
     margin-bottom: 20px;
     font-weight: bold;
+  }
+  .help_wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and ${theme.mobile} {
+    width: 100%;
+    border: none;
   }
 `;
 
@@ -60,31 +102,32 @@ const HelpText = styled.div`
   }
 `;
 
-const Images = styled.div`
-  padding-bottom: 20px;
-  img {
-    width: 40px;
-    margin-right: 20px;
-  }
-`;
-
-
 const Company = styled.div`
+  width: 50%;
+  height: 100%;
+  border-left: 1px solid #000;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  flex: 1;
-  padding-left: 50px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   .title {
     margin-bottom: 20px;
     font-weight: bold;
+  }
+  .company_wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and ${theme.mobile} {
+    width: 100%;
   }
 `;
 
 const CompanyText = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
   span {
     margin-bottom: 10px;
     font-size: 12px;
@@ -104,29 +147,28 @@ const Footer = () => {
             통신판매업 신고 2020-서울마포-4143
           </span>
         </Information>
-        <Help>
-          <span className='title'>HELP</span>
-          <HelpText>
-            <span>GUIDE</span>
-            <span>TERMS & CONDITIONS</span>
-            <span>PRIVACY POLICY</span>
-          </HelpText>
-          <Images>
-            <img src='https://wiisnt.co.kr/images/facebook_icon.ico'/>
-            <img src='https://wiisnt.co.kr/images/Instagram_icon.ico'/>
-            <img src='https://wiisnt.co.kr/images/kakao_icon.ico'/>
-            <img src='https://wiisnt.co.kr/images/youtube_icon.ico'/>
-            <img src='https://wiisnt.co.kr/images/twitter_icon.ico'/>
-          </Images>
-        </Help>
-        <Company>
-          <span className='title'>COMPANY</span>
-          <CompanyText>
-            <span>ABOUT</span>
-            <span>STOCKIST</span>
-            <span>CONTACT</span>
-          </CompanyText>
-        </Company>
+        <Wraps>
+          <Help>
+            <div className='help_wrap'>
+              <span className='title'>HELP</span>
+              <HelpText>
+                <span>GUIDE</span>
+                <span>TERMS & CONDITIONS</span>
+                <span>PRIVACY POLICY</span>
+              </HelpText>
+            </div>
+          </Help>
+          <Company>
+            <div className='company_wrap'>
+              <span className='title'>COMPANY</span>
+              <CompanyText>
+                <span>ABOUT</span>
+                <span>STOCKIST</span>
+                <span>CONTACT</span>
+              </CompanyText>
+            </div>
+          </Company>
+        </Wraps>
       </Content>
     </Container>
   )

@@ -26,12 +26,19 @@ const Banner = styled.div`
   img {
     width: 50%;
   }
+  @media screen and ${theme.mobile} {
+    display: flex;
+    flex-direction: column;
+    img {
+      width: 100%;
+    }
+  }
 `;
 
 const Phamplat = styled.div`
   width: 100%;
   display: flex;
-  flex: 1;
+  // flex: 1;
   .pham {
     width: 33.3%;
     background-size: cover;
@@ -45,28 +52,56 @@ const Phamplat = styled.div`
     }
     div {
       position: absolute;
-      bottom: 0;
+      bottom: 30px;
+      left: 30px;
       span {
         display: block;
         color: #fff;
         font-size: 40px;
         font-weight: bold;
         margin-bottom: 20px;
-        @media screen and ${theme.laptop} {
-          font-size: 30px;
-        }
-        @media screen and ${theme.tablet} {
-          font-size: 20px;
-        }
       }
       span:last-child {
         font-size: 20px;
         font-weight: normal;
-        @media screen and ${theme.laptop} {
-          font-size: 20px;
+      }
+    }
+  }
+  @media screen and ${theme.laptop} {
+    .pham {
+      div {
+        span {
+          font-size: 30px;
+          &:last-child {
+            font-size: 20px;
+          }
         }
-        @media screen and ${theme.tablet} {
-          font-size: 16px;
+      }
+    }
+  }
+  @media screen and ${theme.tablet} {
+    .pham {
+      div {
+        bottom: 20px;
+        span {
+          font-size: 20px;
+          &:last-child {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and ${theme.mobile} {
+    flex-direction: column;
+    .pham {
+      width: 100%;
+      div {
+        span {
+          font-size: 40px;
+          &:last-child {
+            font-size: 20px;
+          }
         }
       }
     }
@@ -77,6 +112,9 @@ const Category = styled.div`
   width: 100%;
   height: 160px;
   background-color: #eee;
+  @media screen and ${theme.tablet} {
+    height: 120px;
+  }
 `;
 
 const Ul = styled.div`
@@ -125,6 +163,14 @@ const Ul = styled.div`
       }
     }
   }
+  @media screen and ${theme.mobile} {
+    li {
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
 `;
 
 const BestItem = styled.div`
@@ -135,12 +181,6 @@ const BestItem = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  @media screen and ${theme.laptop} {
-    width: 840px;
-  }
-  @media screen and ${theme.tablet} {
-    width: 560px;
-  }
   .slide_left {
     position: absolute;
     left: -100px;
@@ -149,9 +189,6 @@ const BestItem = styled.div`
     font-size: 50px;
     color: #ccc;
     cursor: pointer;
-    @media screen and ${theme.laptop} {
-      left: -50px;
-    }
   }
   .slide_right {
     position: absolute;
@@ -161,9 +198,6 @@ const BestItem = styled.div`
     font-size: 50px;
     color: #ccc;
     cursor: pointer;
-    @media screen and ${theme.laptop} {
-      right: -50px;
-    }
   }
   h1 {
     font-size: 26px;
@@ -173,12 +207,6 @@ const BestItem = styled.div`
     width: 1400px;
     display: flex;
     overflow: hidden;
-    @media screen and ${theme.laptop} {
-      width: 840px;
-    }
-    @media screen and ${theme.tablet} {
-      width: 560px;
-    }
     .bestitem_item {
       display: flex;
       flex-direction: column;
@@ -212,6 +240,36 @@ const BestItem = styled.div`
       }
     }
   }
+  @media screen and ${theme.laptop} {
+    width: 840px;
+    .slide_left {
+      left: -50px;
+    }
+    .slide_right {
+      right: -50px;
+    }
+    .bestitem {
+      width: 840px;
+    }
+  }
+  @media screen and ${theme.tablet} {
+    width: 560px;
+    .bestitem {
+      width: 560px;
+    }
+  }
+  @media screen and ${theme.mobile} {
+    width: 280px;
+    .slide_left {
+      left: -60px;
+    }
+    .slide_right {
+      right: -80px;
+    }
+    .bestitem {
+      width: 280px;
+    }
+  }
 `;
 
 const News = styled.div`
@@ -220,12 +278,6 @@ const News = styled.div`
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
-  @media screen and ${theme.laptop} {
-    width: 840px;
-  }
-  @media screen and ${theme.tablet} {
-    width: 560px;
-  }
   h1 {
     font-size: 26px;
     font-weight: bold;
@@ -238,26 +290,16 @@ const News = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      @media screen and ${theme.tablet} {
-        border: 1px solid #eee;
-      }
-      
       .news_title {
         font-weight: bold;
         font-size: 16px;
         text-align: center;
-        @media screen and ${theme.tablet} {
-          font-size: 12px;
-        }
       }
       .news_subTitle {
         display: block;
         font-size: 12px;
         font-weight: bold;
         margin-bottom: 30px;
-        @media screen and ${theme.tablet} {
-          font-size: 10px;
-        }
       }
       .news_img {
         width: 100%;
@@ -269,12 +311,6 @@ const News = styled.div`
           display: flex;
           align-items: center;
           cursor: pointer;
-          @media screen and ${theme.tablet} {
-            flex-direction: column;
-            align-items: flex-start;
-            align-items: center;
-            text-align: center;
-          }
           .news_item_img {
             width: 70px;
             margin-right: 10px;
@@ -295,11 +331,71 @@ const News = styled.div`
                 color: red;
               }
             }
-            @media screen and ${theme.laptop} {
+          }
+        }
+      }
+    }
+  }
+  @media screen and ${theme.laptop} {
+    width: 840px;
+    .news {
+      .news_item {
+        .news_item_section {
+          .news_item_info {
+            .news_item_detail {
               .news_item_title {
                 font-size: 12px;
               }
             }
+          }
+        }
+      }
+    }
+  }
+  @media screen and ${theme.tablet} {
+    width: 560px;
+    .news {
+      .news_item {
+        border: 1px solid #eee;
+        .news_title {
+          font-size: 12px;
+        }
+        .news_subTitle {
+          font-size: 10px;
+        }
+        .news_item_section {
+          .news_item_info {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  @media screen and ${theme.mobile} {
+    width: 280px;
+    h1 {
+      margin-bottom: 20px;
+    }
+    .news {
+      flex-direction: column;
+      gap: 100px;
+      .news_item {
+        border: none;
+        width: 100%;
+        .news_title {
+          font-size: 16px;
+        }
+        .news_subTitle {
+          font-size: 12px;
+        }
+        .news_item_section {
+          .news_item_info {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
           }
         }
       }
@@ -313,12 +409,6 @@ const Influencer = styled.div`
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
-  @media screen and ${theme.laptop} {
-    width: 840px;
-  }
-  @media screen and ${theme.tablet} {
-    width: 560px;
-  }
   h1 {
     font-size: 26px;
     font-weight: bold;
@@ -326,28 +416,12 @@ const Influencer = styled.div`
   .influencer {
     display: flex;
     justify-content: space-between;
-    @media screen and ${theme.tablet} {
-      flex-direction: column;
-    }
     .influencer_item {
       width: 18%;
-      @media screen and ${theme.tablet} {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
-      }
       .influencer_img {
         width: 100%;
         height: 350px;
         margin-bottom: 10px;
-        @media screen and ${theme.laptop} {
-          height: 200px;
-        }
-        @media screen and ${theme.tablet} {
-          height: 300px;
-          width: 250px;
-        }
       }
       .influencer_item_info {
         text-align: center;
@@ -355,14 +429,6 @@ const Influencer = styled.div`
         cursor: pointer;
         .influencer_item_img {
           width: 70px;
-          @media screen and ${theme.laptop} {
-            width: 60px;
-            height: 100%;
-          }
-          @media screen and ${theme.tablet} {
-            width: 200px;
-            height: 200px;
-          }
         }
         .influencer_item_detail {
           display: flex;
@@ -371,9 +437,6 @@ const Influencer = styled.div`
           padding-left: 10px;
           width: 100%;
           font-size: 12px;
-          @media screen and ${theme.tablet} {
-            text-align: center;
-          }
           .influencer_item_title {
           }
           .influencer_item_origin_price {
@@ -389,6 +452,69 @@ const Influencer = styled.div`
       }
     }
   }
+  @media screen and ${theme.laptop} {
+    width: 840px;
+    .influencer {
+      .influencer_item {
+        .influencer_img {
+          height: 200px;
+        }
+        .influencer_item_info {
+          .influencer_item_img {
+            width: 60px;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+  @media screen and ${theme.tablet} {
+    width: 560px;
+    .influencer {
+      flex-direction: column;
+      .influencer_item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        .influencer_img {
+          height: 300px;
+          width: 250px;
+        }
+        .influencer_item_info {
+          .influencer_item_img {
+            width: 200px;
+            height: 200px;
+          }
+          .influencer_item_detail {
+            text-align: center;
+          }
+        }
+      }
+    }
+  @media screen and ${theme.mobile} {
+    width: 280px;
+    h1 {
+      margin-bottom: 20px;
+    }
+    .influencer {
+      .influencer_item {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 100px;
+        .influencer_img {
+          width: 100%;
+          height: 100%;
+        }
+        .influencer_item_info {
+          .influencer_item_img {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+    }
+  }
 `;
 
 const LookBook = styled.div`
@@ -397,12 +523,6 @@ const LookBook = styled.div`
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
-  @media screen and ${theme.laptop} {
-    width: 840px;
-  }
-  @media screen and ${theme.tablet} {
-    width: 560px;
-  }
   h1 {
     font-size: 26px;
     font-weight: bold;
@@ -429,19 +549,44 @@ const LookBook = styled.div`
           font-size: 16px;
           font-weight: bold;
           text-align: center;
-          @media screen and ${theme.laptop} {
-            font-size: 14px;
-          }
         }
         span {
           display: block;
           text-align: center;
           color: #999;
           font-size: 14px;
-          @media screen and ${theme.laptop} {
+        }
+      }
+    }
+  }
+  @media screen and ${theme.laptop} {
+    width: 840px;
+    .lookbook {
+      .lookbook_item {
+        .lookbook_item_title {
+          h4 {
+            font-size: 14px;
+          }
+          span {
             font-size: 12px;
           }
         }
+      }
+    }
+  }
+  @media screen and ${theme.tablet} {
+    width: 560px;
+  }
+  @media screen and ${theme.mobile} {
+    width: 280px;
+    h1 {
+      margin-bottom: 20px;
+    }
+    .lookbook {
+      flex-direction: column;
+      .lookbook_item {
+        width: 100%;
+        margin-bottom: 100px;
       }
     }
   }

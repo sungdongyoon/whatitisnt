@@ -97,10 +97,18 @@ const Aside = styled.div`
     }
   }
   @media screen and ${theme.tablet} {
-    .asideNew {
-      font-size: 10px;
-    }
     ul {
+      width: 100%;
+      li {
+        span {
+          font-size: 8px;
+        }
+      }
+    }
+  }
+  @media screen and ${theme.mobile} {
+    ul {
+      width: 100%;
       li {
         span {
           font-size: 8px;
@@ -151,7 +159,7 @@ const Title = styled.div`
 
 const ProductAll = () => {
   const pageWidth = window.innerWidth;
-  const newItem = ["BEST", "반소매 티셔츠", "상의", "아우터", "하의", "우먼", "모자", "가방", "신발", "라이프", "악세사리"];
+  const newItem = ["BEST", "상의", "아우터", "하의", "우먼", "모자", "가방", "신발", "악세사리"];
   const [productList, setProductList] = useState([]);
   const [itemName, setItemName] = useState('');
   const getItemName = (e) => {

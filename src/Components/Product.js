@@ -7,8 +7,14 @@ const Container = styled.div`
   width: 320px;
   cursor: pointer;
   margin-bottom: 50px;
-  @media screen and ${theme.tablet} {
-    margin: 50px;
+  @media screen and ${theme.mobile} {
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -18,6 +24,9 @@ const Img = styled.div `
   img {
     width: 100%;
     height: 100%;
+  }
+  @media screen and ${theme.laptop} {
+
   }
 `;
 

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import theme from '../style/theme';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   height: 100px;
@@ -93,7 +95,8 @@ const MenuBtn = styled.div`
   position: absolute;
   right: 30px;
   transition: 0.5s;
-  transform: ${(props) => props.isToggle && "scaleX(-1)"};
+  transform: ${(props) => props.isToggle && "scaleY(-1)"};
+  transition-delay: 0.3s;
   z-index: 10;
   cursor: pointer;
   @media screen and ${theme.mobile} {
@@ -106,7 +109,7 @@ const MenuBtn = styled.div`
 const MobileMenu = styled.div`
   display: none;
   width: 100vw;
-  height: 300px;
+  height: 200px;
   position: absolute;
   top: 0;
   left: 0;
@@ -119,7 +122,35 @@ const MobileMenu = styled.div`
     color: #fff;
   }
   @media screen and ${theme.mobile} {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    ul {
+      display: flex;
+      justify-content: flex-start;
+      gap: 30px;
+      padding: 0;
+      list-style: none;
+      margin: 30px;
+      .log {
+        cursor: pointer;
+      }
+      li {
+        font-size: 12px;
+      }
+      &:first-child {
+        li {
+          font-weight: bold;
+          &:first-child {
+            color: red;
+          }
+          &:last-child {
+            color: #40F8FF;
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -187,9 +218,33 @@ const Header = ({authentic, setAutentic}) => {
             <Atag>장바구니</Atag>
           </li>
         </Ul>
-        <MenuBtn onClick={onClickToggle} isToggle={isToggle}>{">"}</MenuBtn>
+        <MenuBtn onClick={onClickToggle} isToggle={isToggle}>
+          <FontAwesomeIcon icon={faChevronDown}/>
+        </MenuBtn>
         <MobileMenu isToggle={isToggle}>
-          <div>ddd</div>
+          <div className='mobileMenu'>
+            <ul>
+              <li>NEW ARRIVAL</li>
+              <li>SWIM WEAR</li>
+            </ul>
+            <ul>
+              <li>스토어</li>
+              <li>룩북</li>
+              <li>매거진</li>
+              <li>브랜드 소개</li>
+            </ul>
+            <ul>
+              <li>매장안내</li>
+              <li>회원혜택</li>
+              <li>검색</li>
+              {authentic ? (
+                <li className='log' onClick={logOut}>로그아웃</li>
+              ) : (
+                <li className='log' onClick={() => navigate('/login')}>로그인</li>
+              )}
+              <li>장바구니</li>
+            </ul>
+          </div>
         </MobileMenu>
       </Content>
     </Container>

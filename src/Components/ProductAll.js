@@ -20,6 +20,33 @@ const Aside = styled.div`
   position: fixed;
   left: 10%;
   width: 250px;
+  .asideNew {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    font-size: 12px;
+    font-weight: bold;
+    color: #068FFF;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      width: 100%;
+      font-size: 12px;
+      margin: 5px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      .asideOutlet {
+        color: red;
+        font-weight: bold;
+      }
+    }
+  }
   @media screen and ${theme.onlyAside} {
     display: flex;
     justify-content: center;
@@ -32,16 +59,7 @@ const Aside = styled.div`
     background-color: #333;
     color: #fff;
     border-radius: 10px;
-  }
-  .asideNew {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #ccc;
-    font-size: 12px;
-    font-weight: bold;
-    color: #068FFF;
-    @media screen and ${theme.onlyAside} {
+    .asideNew {
       width: 10%;
       margin: 0;
       padding: 0;
@@ -50,36 +68,43 @@ const Aside = styled.div`
         display: none;
       }
     }
-  }
-  ul {
-    padding: 0;
-    @media screen and ${theme.onlyAside} {
+    ul {
       display: flex;
       align-items: center;
       width: 80%;
       margin: 0;
+      li {
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        border-bottom: none;
+        .plus {
+          display: none;
+        }
+      }
     }
   }
-  li {
-    list-style: none;
-    width: 100%;
-    font-size: 12px;
-    margin: 5px 0;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    .asideOutlet {
-      color: red;
-      font-weight: bold;
+  @media screen and ${theme.laptop} {
+    .asideNew {
+      font-size: 10px;
     }
-    @media screen and ${theme.onlyAside} {
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      border-bottom: none;
-      .plus {
-        display: none;
+    ul {
+      li {
+        span {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  @media screen and ${theme.tablet} {
+    .asideNew {
+      font-size: 10px;
+    }
+    ul {
+      li {
+        span {
+          font-size: 8px;
+        }
       }
     }
   }
@@ -106,6 +131,21 @@ const Title = styled.div`
   label {
     margin-left: 10px;
   }
+  @media screen and ${theme.mobile} {
+    h5 {
+      font-size: 18px;
+    }
+    span {
+      font-size: 10px;
+    }
+    input {
+      width: 200px;
+      font-size: 12px;
+    }
+    label {
+      font-size: 12px;
+    }
+  }
 `;
 
 
@@ -127,9 +167,7 @@ const ProductAll = () => {
     let url = `https://my-json-server.typicode.com/sungdongyoon/whatitisnt/products/`;
     let response = await fetch(url);
     let data = await response.json();
-    // console.log("데이터", data);
     setProductList(data);
-    // console.log("리스트", productList)
   };
 
   const [windowSize, setWindowSize] = useState({
@@ -151,7 +189,7 @@ const ProductAll = () => {
       setMdValue(4);
     }
     if(pageWidth < 1024) {
-      setMdValue(5);
+      setMdValue(6);
     }
     console.log("?", pageWidth, mdValue);
     window.addEventListener("resize", handleResize);

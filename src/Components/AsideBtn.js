@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import theme from '../style/theme';
 
 const Button = styled.div`
   position: fixed;
@@ -26,6 +27,9 @@ const Button = styled.div`
     background-color: #FFF000;
     position: absolute;
     right: 0;
+  }
+  @media screen and ${theme.mobile} {
+    display: none;
   }
 `;
 

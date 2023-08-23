@@ -10,15 +10,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media screen and ${theme.laptop} {
-    border: 3px solid red;
-  }
-  @media screen and ${theme.tablet} {
-    border: 3px solid blue;
-  }
-  @media screen and ${theme.mobile} {
-    border: 3px solid yellow;
-  }
 `;
 
 const Banner = styled.div`

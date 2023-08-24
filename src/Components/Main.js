@@ -6,6 +6,8 @@ import theme from '../style/theme';
 import pham1 from "../img/pham1.jpg";
 import pham2 from "../img/pham2.jpg";
 import pham3 from "../img/pham3.jpg";
+import banner1 from "../img/banner1.jpg";
+import banner2 from "../img/banner2.gif";
 
 const Container = styled.div`
   margin-top: 100px;
@@ -609,8 +611,8 @@ const Main = () => {
   return (
     <Container>
       <Banner>
-        <img src='http://m.shop1.markgonzales.cafe24.com/images/MOBILE/M-main1.jpg'/>
-        <img src='http://m.shop1.markgonzales.cafe24.com/images/MOBILE/M-main-2_---11.gif'/>
+        <img src={banner1}/>
+        <img src={banner2}/>
       </Banner>
       <Category>
         <Ul>

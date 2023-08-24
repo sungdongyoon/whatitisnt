@@ -3,6 +3,9 @@ import { styled } from 'styled-components';
 import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import theme from '../style/theme';
+import pham1 from "../img/pham1.jpg";
+import pham2 from "../img/pham2.jpg";
+import pham3 from "../img/pham3.jpg";
 
 const Container = styled.div`
   margin-top: 100px;
@@ -639,21 +642,21 @@ const Main = () => {
       </Category>
       <Phamplat>
         <div className='pham1 pham'>
-          <img src='http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230707_01_.jpg'/>
+          <img src={pham1}/>
           <div>
             <span>베스트 아이템</span>
             <span>지금 가장 인기있는 아이템</span>
           </div>
         </div>
         <div className='pham2 pham'>
-          <img src='http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230703_03_1.jpg'/>
+          <img src={pham2}/>
           <div>
             <span>그래픽 티셔츠 뭐입지?</span>
             <span>취향따라 골라입는 티셔츠 추천</span>
           </div>
         </div>
         <div className='pham3 pham'>
-          <img src='http://m.shop1.markgonzales.cafe24.com/images/MOBILE/230703_02_.jpg'/>
+          <img src={pham3}/>
           <div>
             <span>짐이 많은 당신을 위해</span>
             <span>인기상품 재입고</span>

@@ -3,10 +3,10 @@
 ### 💻프로젝트 소개
 리액트로 제작한 와릿이즌 홈페이지입니다.
 
-### 📒사용 언어
-- React
+### 📒Skill
+- React.js
 
-### 📗사용 라이브러리
+### 📗라이브러리
 - router
 - spinner
 - styled-components
